@@ -9,3 +9,4 @@ image:
   repository: 753392824297.dkr.ecr.us-west-2.amazonaws.com/liorm-cloudride:latest
   pullPolicy: IfNotPresent
   tag: "latest"
+

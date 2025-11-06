@@ -12,9 +12,12 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: git@github.com:liormilliger/mywebsite-k8s.git
+    repoURL: git@github.com:liormilliger/cloudride-k8s.git
     targetRevision: main
     path: my-app-chart
+    helm:
+      valueFiles:
+      - "mywebsite-helm-values.yaml" 
   destination:
     server: https://kubernetes.default.svc
     namespace: default
@@ -22,3 +25,4 @@ spec:
     automated:
       prune: true
       selfHeal: true
+      

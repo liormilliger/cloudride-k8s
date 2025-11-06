@@ -1,3 +1,5 @@
+# charts/mywebsite/templates/app-deployment.yaml
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -22,19 +24,19 @@ spec:
         - containerPort: 5000
         env:
         - name: POSTGRES_HOST
-          value: "postgres-db-service"
+          value: "rds-db-service" 
         - name: POSTGRES_DB
           valueFrom:
             configMapKeyRef:
-              name: postgres-config
+              name: rds-config
               key: POSTGRES_DB
         - name: POSTGRES_USER
           valueFrom:
             configMapKeyRef:
-              name: postgres-config
+              name: rds-config
               key: POSTGRES_USER
         - name: POSTGRES_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: postgres-secret
+              name: rds-secret
               key: postgres-password
