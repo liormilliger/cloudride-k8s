@@ -6,6 +6,6 @@ rds:
 
 replicaCount: 2
 image:
-  repository: 753392824297.dkr.ecr.us-west-2.amazonaws.com/liorm-cloudride:latest
+  repository: 753392824297.dkr.ecr.us-west-2.amazonaws.com/liorm-cloudride
   pullPolicy: IfNotPresent
   tag: "latest"
