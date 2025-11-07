@@ -21,7 +21,7 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: Always
         ports:
-        - containerPort: 5000
+        - containerPort: 80
         env:
         - name: POSTGRES_HOST
           value: "rds-db-service" 
