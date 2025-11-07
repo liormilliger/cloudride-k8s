@@ -13,9 +13,13 @@ metadata:
     alb.ingress.kubernetes.io/ssl-redirect: '443'
 spec:
   ingressClassName: alb
+  defaultBackend:
+    service:
+      name: mywebsite-service
+      port:
+        number: 80
   rules:
-    - host: liormilliger.com
-      http:
+    - http:
         paths:
           - pathType: Prefix
             path: /
