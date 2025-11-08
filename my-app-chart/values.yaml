@@ -1,8 +1,8 @@
 rds:
-  endpoint: "${rds_endpoint}"
-  username: "${db_username}"
-  password: "${db_password}"
-  dbName:   "${db_name}"
+  endpoint: "cloudride-legacy-db.c0kc8dxradrc.us-west-2.rds.amazonaws.com"
+  username: "postgres"
+  password: "example"
+  dbName:   "restaurants"
 
 replicaCount: 2
 image:
