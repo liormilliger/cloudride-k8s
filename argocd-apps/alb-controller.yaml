@@ -17,6 +17,8 @@ spec:
         serviceAccount:
           create: true
           name: aws-load-balancer-controller
+          annotations:
+          eks.amazonaws.com/role-arn: arn:aws:iam::753392824297:role/liorm-cloudride-test-alb-controller-role
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system

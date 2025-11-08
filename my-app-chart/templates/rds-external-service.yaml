@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: rds-db-service # Used by the Deployment host variable
+  name: pgdb # Used by the Deployment host variable
 spec:
   type: ExternalName
   externalName: {{ .Values.rds.endpoint }} # <--- INJECTED TERRAFORM VALUE
