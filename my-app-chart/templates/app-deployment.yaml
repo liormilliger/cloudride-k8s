@@ -25,14 +25,11 @@ spec:
         - containerPort: 80
         env:
         - name: DB_HOST
-          value: {{ .Values.rds.endpoint }}
+          value: "cloudride-legacy-db.c0kc8dxradrc.us-west-2.rds.amazonaws.com"
         - name: DB_NAME
-          value: {{ .Values.rds.dbName }}
+          value: "restaurants"
         - name: DB_USER
-          valueFrom:
-            configMapKeyRef:
-              name: rds-config
-              key: DB_USER
+          value: "postgres"
         - name: DB_PASSWORD
           valueFrom:
             secretKeyRef:
