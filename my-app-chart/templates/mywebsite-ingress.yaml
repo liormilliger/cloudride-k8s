@@ -5,7 +5,7 @@ metadata:
   name: mywebsite-ingress-alb
   namespace: default
   annotations:
-    # alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:us-east-1:704505749045:certificate/e1c3c46a-e125-4e8c-8ec8-be46addfe518"
+    # alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:us-west-2:753392824297:certificate/d9404c70-7767-4998-8214-56c03746b1da"
     kubernetes.io/ingress.class: "alb"
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip

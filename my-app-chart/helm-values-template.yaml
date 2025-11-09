@@ -1,0 +1,5 @@
+rds:
+  endpoint: "${rds_endpoint}"
+  username: "${db_username}"
+  password: "${db_password}"
+  dbName: "${db_name}"
