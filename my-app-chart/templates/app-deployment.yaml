@@ -7,6 +7,7 @@ metadata:
   labels:
     app: mywebsite
 spec:
+  # Pulls the replica count from values.yaml
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
@@ -19,21 +20,24 @@ spec:
       containers:
       - name: mywebsite-app
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-        imagePullPolicy: Always
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
         - containerPort: 80
         env:
         - name: DB_HOST
-          value: "{{ .Values.rds.endpoint }}"
+          value: "pgdb" 
         - name: DB_NAME
-          value: "{{ .Values.rds.dbName }}"
+          valueFrom:
+            configMapKeyRef:
+              name: rds-config
+              key: DB_NAME
         - name: DB_USER
           valueFrom:
             configMapKeyRef:
               name: rds-config
-              key: POSTGRES_USER # Keep ConfigMap key, but change ENV name
+              key: DB_USER
         - name: DB_PASSWORD
           valueFrom:
             secretKeyRef:
               name: rds-secret
-              key: postgres-password # Keep Secret key, but change ENV name
+              key: postgres-password
