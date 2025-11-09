@@ -24,12 +24,9 @@ spec:
         - containerPort: 80
         env:
         - name: DB_HOST
-          value: "pgdb"
+          value: "{{ .Values.rds.endpoint }}"
         - name: DB_NAME
-          valueFrom:
-            configMapKeyRef:
-              name: rds-config
-              key: POSTGRES_DB # Keep ConfigMap key, but change ENV name
+          value: "{{ .Values.rds.dbName }}"
         - name: DB_USER
           valueFrom:
             configMapKeyRef:
