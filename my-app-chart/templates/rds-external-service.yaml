@@ -2,8 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: pgdb
+  namespace: default
 spec:
   type: ExternalName
-  externalName: {{ .Values.rds.endpoint }}
-  ports:
-    - port: 5432
+  externalName: cloudride-legacy-db.c0kc8dxradrc.us-west-2.rds.amazonaws.com

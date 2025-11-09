@@ -1,12 +1,13 @@
 rds:
-  endpoint: "cloudride-legacy-db.c0kc8dxradrc.us-west-2.rds.amazonaws.com"
-  username: "${db_username}"
-  password: "${db_password}"
-  dbName: "restaurants"
+  # endpoint: "pgdb.default.svc.cluster.local"
+  # # endpoint: "cloudride-legacy-db.c0kc8dxradrc.us-west-2.rds.amazonaws.com"
+  # username: "postgres"
+  # password: "b~P-BS1-i_nW8eacX)~olT-65M<U"
+  # dbName: "restaurants"
 
 replicaCount: 2
 image:
   repository: 753392824297.dkr.ecr.us-west-2.amazonaws.com/liorm-cloudride
   pullPolicy: IfNotPresent
-  tag: "latest"
+  tag: "10"
 
