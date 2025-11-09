@@ -1,4 +1,4 @@
-rds:
+# rds:
   # endpoint: "pgdb.default.svc.cluster.local"
   # # endpoint: "cloudride-legacy-db.c0kc8dxradrc.us-west-2.rds.amazonaws.com"
   # username: "postgres"
