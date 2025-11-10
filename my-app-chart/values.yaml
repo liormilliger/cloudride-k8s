@@ -1,7 +1,9 @@
 rds:
   endpoint: "pgdb.default.svc.cluster.local"
   dbName: "restaurants"
-
+  # username:
+  # password: 
+  
 replicaCount: 2
 image:
   repository: 753392824297.dkr.ecr.us-west-2.amazonaws.com/liorm-cloudride
