@@ -1,20 +1,21 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: mywebsite-ingress-alb
+  name: mywebsite-ingress-le
   namespace: default
   annotations:
-    alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:us-west-2:753392824297:certificate/cadf964f-0be5-43da-a1c7-2f5ba2b386a6"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
     kubernetes.io/ingress.class: "alb"
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
-    # Listen on both HTTP (80) and HTTPS (443)
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
-    # Important: Redirect all traffic from HTTP (80) to HTTPS (443)
-    # alb.ingress.kubernetes.io/ssl-redirect: '443' 
-    # alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-TLS13-1-2-2021-06 # A more modern policy
+    
 spec:
   ingressClassName: alb
+  tls:
+    - hosts:
+        - cloudride-app.ddns.net
+      secretName: cloudride-app-tls
   defaultBackend:
     service:
       name: mywebsite-service
