@@ -57,8 +57,6 @@ Kibana is deployed as part of the Elastic Stack in the elastic-system namespace.
 
 a. Get Elastic Credentials: The default username is elastic. Retrieve the password from the secret created by the ECK operator:
 
-Bash
-
 kubectl -n elastic-system get secret elasticsearch-es-elastic-user -o jsonpath="{.data.elastic}" | base64 --decode && echo
 b. Port-Forward Kibana:
 

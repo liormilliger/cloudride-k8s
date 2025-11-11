@@ -12,7 +12,7 @@ metadata:
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
     # Important: Redirect all traffic from HTTP (80) to HTTPS (443)
     # alb.ingress.kubernetes.io/ssl-redirect: '443' 
-    alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-TLS13-1-2-2021-06 # A more modern policy
+    # alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-TLS13-1-2-2021-06 # A more modern policy
 spec:
   ingressClassName: alb
   defaultBackend:
