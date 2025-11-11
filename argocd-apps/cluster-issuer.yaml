@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: git@github.com:liormilliger/cloudride-k8s.git
     targetRevision: main
-    path: certs/clusterissuer
+    path: certs/cluster-issuer.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: ''
