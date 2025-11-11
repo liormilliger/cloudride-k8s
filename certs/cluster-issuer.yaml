@@ -4,7 +4,7 @@ metadata:
   name: letsencrypt-prod
 spec:
   acme:
-    email: liormilliger@gmail.com
+    email: liormdevops@gmail.com
     server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       name: letsencrypt-prod-account-key
@@ -12,7 +12,7 @@ spec:
     - http01:
         ingress:
           class: alb
-          ingressTemplate:
-            metadata:
-              annotations:
-                alb.ingress.kubernetes.io/scheme: internet-facing
+          # ingressTemplate:
+          #   metadata:
+          #     annotations:
+          #       alb.ingress.kubernetes.io/scheme: internet-facing
