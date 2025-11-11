@@ -12,3 +12,8 @@ spec:
     - http01:
         ingress:
           class: alb
+          serviceType: NodePort 
+          podTemplate:
+            metadata:
+              annotations:
+                alb.ingress.kubernetes.io/scheme: "internet-facing"
