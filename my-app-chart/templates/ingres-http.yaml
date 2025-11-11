@@ -4,26 +4,19 @@ metadata:
   name: mywebsite-ingress
   namespace: default
   annotations:
-  
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/group.name: "cloudride-app-group"
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
-
 spec:
   ingressClassName: alb
-  tls:
-    - hosts:
-        - cloudride-app.ddns.net
-      secretName: cloudride-tls
   defaultBackend:
     service:
       name: mywebsite-service
       port:
         number: 80
   rules:
-    - host: "cloudride-app.ddns.net" 
+    - host: "cloudride-app.ddns.net"
       http:
         paths:
           - pathType: Prefix
