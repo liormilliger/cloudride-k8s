@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: mywebsite-ingress-https
+  name: https-ingress
   namespace: default
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
@@ -9,6 +9,7 @@ metadata:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/group.name: "cloudride-app-group"
+    alb.ingress.kubernetes.io/group.order: "2"
     alb.ingress.kubernetes.io/ssl-redirect: '443'
 spec:
   ingressClassName: alb

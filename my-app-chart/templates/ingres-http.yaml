@@ -1,13 +1,14 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: mywebsite-ingress
+  name: http-ingress
   namespace: default
   annotations:
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/group.name: "cloudride-app-group"
+    alb.ingress.kubernetes.io/group.order: "1"
 spec:
   ingressClassName: alb
   defaultBackend:
