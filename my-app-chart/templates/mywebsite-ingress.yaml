@@ -5,7 +5,7 @@ metadata:
   namespace: default
   annotations:
     # Existing ACM Certificate ARN for HTTPS
-    alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:us-west-2:753392824297:certificate/cadf964f-0be5-43da-a1c7-2f5ba2b386a6"
+    # alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:us-west-2:753392824297:certificate/cadf964f-0be5-43da-a1c7-2f5ba2b386a6"
     # Specify the ingress class for AWS Load Balancer Controller
     kubernetes.io/ingress.class: "alb"
     alb.ingress.kubernetes.io/scheme: internet-facing
@@ -15,7 +15,7 @@ metadata:
     # Important: Redirect all traffic from HTTP (80) to HTTPS (443)
     alb.ingress.kubernetes.io/ssl-redirect: '443' 
     # Optional: You can uncomment the policy for stricter security
-    # alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-TLS13-1-2-2021-06 # A more modern policy
+    alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-TLS13-1-2-2021-06 # A more modern policy
 spec:
   ingressClassName: alb
   # The default backend is still needed for requests that don't match a rule
