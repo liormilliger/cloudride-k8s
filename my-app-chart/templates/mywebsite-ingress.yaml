@@ -1,18 +1,16 @@
-# mywebsite-ingress.yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: mywebsite-ingress-alb
   namespace: default
   annotations:
-    # alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:us-west-2:753392824297:certificate/d9404c70-7767-4998-8214-56c03746b1da"
+    alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:us-west-2:753392824297:certificate/d9404c70-7767-4998-8214-56c03746b1da"
     kubernetes.io/ingress.class: "alb"
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
-
-    # alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
-    # alb.ingress.kubernetes.io/ssl-redirect: '443'
+    # alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+    alb.ingress.kubernetes.io/ssl-redirect: '443'
     # alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-2016-08
 spec:
   ingressClassName: alb

@@ -28,12 +28,11 @@ spec:
           value: "pgdb"
         - name: DB_NAME
           value: "restaurants"
-        # Reference the K8s Secret created by ESO
         - name: DB_USER
           valueFrom:
             secretKeyRef:
-              name: rds-credentials-k8s # Name defined in ExternalSecret target
-              key: db_username         # Key defined in ExternalSecret data
+              name: rds-credentials-k8s
+              key: db_username
         - name: DB_PASSWORD
           valueFrom:
             secretKeyRef:
