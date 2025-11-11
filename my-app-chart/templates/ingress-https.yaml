@@ -4,19 +4,18 @@ metadata:
   name: https-ingress
   namespace: default
   annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/group.name: "cloudride-app-group"
+    alb.ingress.kubernetes.io/group.name: "cloudride-app"
     alb.ingress.kubernetes.io/group.order: "2"
-    alb.ingress.kubernetes.io/ssl-redirect: '443'
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
   ingressClassName: alb
   tls:
     - hosts:
         - cloudride-app.ddns.net
-      secretName: cloudride-tls  
+      secretName: cloudride-tls
   rules:
     - host: "cloudride-app.ddns.net"
       http:
