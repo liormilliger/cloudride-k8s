@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: clusterissuer
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:liormilliger/cloudride-k8s.git
+    targetRevision: main
+    path: certs/clusterissuer
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ''
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

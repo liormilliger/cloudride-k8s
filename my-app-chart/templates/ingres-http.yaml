@@ -4,21 +4,19 @@ metadata:
   name: mywebsite-ingress
   namespace: default
   annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-prod" 
-    kubernetes.io/ingress.class: "alb"
+  
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/group.name: "cloudride-app-group"
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
-    # REMOVED: alb.ingress.kubernetes.io/ssl-redirect: '443' for now. 
-    # We will re-add this AFTER the certificate is issued.
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
 
 spec:
   ingressClassName: alb
   tls:
     - hosts:
         - cloudride-app.ddns.net
-      secretName: cloudride-app-tls
+      secretName: cloudride-tls
   defaultBackend:
     service:
       name: mywebsite-service
