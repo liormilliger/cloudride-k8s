@@ -1,28 +1,67 @@
-# templates/NOTES.txt
-
-Your '{{ .Chart.Name }}' application has been deployed. 🚀
+Your 'cloudride-k8s' application and supporting infrastructure have been deployed. 🚀
 
 ---------------------------------------------------------------------------------
 
 ### Post-Deployment Instructions
 
-1. **Configure DNS in AWS Route 53**
-   To make your application accessible via a domain name, you need to point your domain to the AWS Application Load Balancer (ALB).
-   - Get the DNS endpoint of the ALB created for your service.
-   - In AWS Route 53, create a Hosted Zone for your domain.
-   - Inside the Hosted Zone, create an 'A' record with the "Alias" option enabled, pointing to the ALB endpoint.
+This environment includes ArgoCD for GitOps, the Prometheus Stack for monitoring, and the Elastic Stack (ECK) for logging. Use the following steps to access the services and finalize network configuration.
 
+1. **Access the Web Application (cloudride-app.ddns.net)**
+
+   To make your application accessible via its public domain name (cloudride-app.ddns.net), you must update your DNS record in Route 53 to point to the AWS Application Load Balancer (ALB).
+
+   * **a. Get the ALB DNS Endpoint:**
+       Run the following command to find the DNS name of the ALB created by the Ingress mywebsite-ingress-alb:
+       
+       kubectl -n default get ingress mywebsite-ingress-alb -o jsonpath='{.status.loadBalancer.ingress[0].hostname}'
+      
+       > **Note:** The hostname will look similar to k8s-default-mywebsit-xxxxxxxxxx-1234567890.us-west-2.elb.amazonaws.com.
+
+   * **b. Configure DNS in AWS Route 53:**
+       * Navigate to the Hosted Zone for your domain.
+       * Create or update the 'A' record for **`cloudride-app.ddns.net`**.
+       * Enable the **Alias** option and point the record to the ALB endpoint retrieved above.
+       
 2. **Access the ArgoCD Dashboard**
-   To access the ArgoCD user interface, you can forward the port from the Kubernetes service to your local machine.
 
-   Run this command in your terminal:
+   Access the ArgoCD UI by port-forwarding the service:
+   
    kubectl port-forward svc/argocd-server -n argocd 8080:443
 
-   You can now browse to **https://localhost:8080**
+You can now browse to https://localhost:8080
 
-3. **Get Initial ArgoCD Admin Password**
-   To log in for the first time, retrieve the initial admin password with this command:
+   **Get Initial ArgoCD Admin Password**
 
-   kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 --decode && echo
+Log in for the first time by retrieving the initial admin password. The username is typically admin.
 
----------------------------------------------------------------------------------
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 --decode && echo
+Access the Grafana Dashboard (Monitoring)
+
+---
+
+Grafana is deployed as part of the Prometheus stack in the monitoring namespace.
+
+***a. Get Grafana Admin Password: The default username is admin. Retrieve the initial password:***
+
+kubectl -n monitoring get secret prometheus-kube-prometheus-stack-grafana -o jsonpath="{.data.admin-password}" | base64 --decode && echo
+
+***b. Port-Forward Grafana:***
+
+kubectl port-forward svc/prometheus-kube-prometheus-stack-grafana -n monitoring 3000:80
+
+You can now browse to http://localhost:3000
+
+***Access the Kibana Dashboard (Logging)***
+
+Kibana is deployed as part of the Elastic Stack in the elastic-system namespace.
+
+a. Get Elastic Credentials: The default username is elastic. Retrieve the password from the secret created by the ECK operator:
+
+Bash
+
+kubectl -n elastic-system get secret elasticsearch-es-elastic-user -o jsonpath="{.data.elastic}" | base64 --decode && echo
+b. Port-Forward Kibana:
+
+kubectl port-forward svc/kibana-kb-http -n elastic-system 5601:5601
+
+You can now browse to https://localhost:5601 (Kibana typically uses HTTPS by default).

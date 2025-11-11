@@ -1,4 +1,4 @@
-## ☁️ EKS GitOps Configuration Repository (`liormilliger/cloudride-k8s.git`)
+## ☁️ EKS GitOps Configuration Repository
 
 This repository contains the full set of Kubernetes manifests and ArgoCD Application definitions for deploying a production-ready application environment on an EKS cluster.
 
@@ -9,8 +9,8 @@ It operates under the **GitOps principle**, where all desired cluster states are
 Before utilizing this repository, the underlying infrastructure must be provisioned.
 
 * **EKS Cluster and ArgoCD:** Must be deployed using the companion **Terraform repository**: `liormilliger/cloudride-app.git`.
-* **AWS Secrets Manager Credentials:** RDS credentials (username/password) are expected to exist in AWS Secrets Manager under the key `rds!db-ef76ec0b-780c-4e4b-a8d6-45d22333ed19`.
-* **ACM Certificate:** An AWS ACM certificate with the ARN `arn:aws:acm:us-west-2:753392824297:certificate/cadf964f-0be5-43da-a1c7-2f5ba2b386a6` must exist in the `us-west-2` region for the Ingress to function with HTTPS.
+* **AWS Secrets Manager Credentials:** RDS credentials (username/password) are expected to exist in AWS Secrets Manager.
+* **ACM Certificate:** An AWS ACM certificate must exist in the `us-west-2` region for the Ingress to function with HTTPS.
 
 ### 🏗️ Architecture & Deployment Flow
 
