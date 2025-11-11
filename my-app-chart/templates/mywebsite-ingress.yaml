@@ -8,8 +8,11 @@ metadata:
     kubernetes.io/ingress.class: "alb"
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/ssl-redirect: '443' 
-    
+    alb.ingress.kubernetes.io/group.name: "cloudride-app-group"
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+    # REMOVED: alb.ingress.kubernetes.io/ssl-redirect: '443' for now. 
+    # We will re-add this AFTER the certificate is issued.
+
 spec:
   ingressClassName: alb
   tls:
