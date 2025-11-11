@@ -4,7 +4,7 @@ metadata:
   name: letsencrypt-prod
 spec:
   acme:
-    email: liormilliger@gmail.com 
+    email: liormilliger@gmail.com
     server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       name: letsencrypt-prod-account-key
@@ -12,8 +12,8 @@ spec:
     - http01:
         ingress:
           class: alb
-          podTemplate:
+          ingressTemplate:
             metadata:
               annotations:
-                alb.ingress.kubernetes.io/group.name: "cloudride-app-group"
-                alb.ingress.kubernetes.io/scheme: "internet-facing"
+                alb.ingress.kubernetes.io/scheme: internet-facing
+                alb.ingress.kubernetes.io/group.name: cloudride-app-group
