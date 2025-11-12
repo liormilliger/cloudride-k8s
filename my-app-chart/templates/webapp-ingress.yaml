@@ -5,11 +5,13 @@ metadata:
   namespace: default
   annotations:
     kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-west-2:753392824297:certificate/801bd333-e10e-4b30-bbcd-68f26748efd2
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80},{"HTTPS":443}]'
     alb.ingress.kubernetes.io/ssl-redirect: '443'
     # cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    #arn:aws:acm:us-west-2:753392824297:certificate/801bd333-e10e-4b30-bbcd-68f26748efd2
 spec:
   ingressClassName: alb
   rules:
