@@ -9,16 +9,11 @@ metadata:
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80},{"HTTPS":443}]'
     alb.ingress.kubernetes.io/ssl-redirect: '443'
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    # cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
   ingressClassName: alb
-  tls:
-    - hosts:
-        - cloudride-app.ddns.net
-      secretName: cloudride-tls
   rules:
-    - host: cloudride-app.ddns.net
-      http:
+    - http:
         paths:
           - path: /
             pathType: Prefix
